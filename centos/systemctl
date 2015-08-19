@@ -1,0 +1,52 @@
+
+
+# change state service
+systemctl start puppet.service
+systemctl stop puppet.service
+systemctl restart puppet.service
+systemctl reload puppet.service
+
+
+# enable disable service
+systemctl enable puppet.service
+systemctl disable puppet.service
+
+# check status of service
+systemctl status puppet.service
+systemctl is-active puppet.service
+systemctl is-enabled puppet.service
+systemctl is-failed puppet.service
+
+# list active units
+systemctl list-units
+systemctl list-units --type=service
+
+# list active units loaded in to memmory ( ie units the system thinks it needs)
+systemctl list-unit-files
+
+# list all units
+systemctl list-units --all
+systemctl list-units --all --state=inactive
+
+
+# list service dependencies
+systemctl list-dependencies sshd.service
+
+# show unit properties
+systemctl show sshd.servicea
+
+
+# check run level
+systemctl get-default
+
+# check targets for units
+systemctl list-unit-files --type=target
+
+# System wide commands
+	# put server into singe user mode
+	sudo systemctl rescue 
+	# shutdown server    
+	sudo systemctl halt 
+	sudo systemctl poweroff
+	$ reboot server 
+	sudo systemctl reboot

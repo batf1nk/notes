@@ -1,0 +1,21 @@
+ Install Azure CLI tools
+
+# setup Nodej 
+yum install epel-release -y
+yum install nodejs -y
+yum install npm -y 
+
+# instal Azure tools
+npm install -g azure-cli
+
+# download user credentials
+azure login -u <username>
+azure account download
+azure logout -u <username>
+if you dont have console accees then you will need to do this on another server
+or on a windows server
+open up the web manegment interface and go to https://manage.windowsazure.com/publishsettings/index?client=powershell
+copy the file over to the linux box
+
+azure account import <path to your .publishsettings file>
+

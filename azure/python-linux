@@ -1,0 +1,29 @@
+# setup azure python SDK
+
+
+# setip pip python installer
+yum install python-pip.noarch
+
+# download Azure Python SDK
+pip install azure
+
+# setup open SSL cert for Web API
+
+	#Generate cert
+	openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
+	# create .cer
+	openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
+
+
+# upload the .cer to Azure web site under settings
+
+
+#using the abbove i a python script
+from azure import *
+from azure.servicemanagement import *
+
+subscription_id = '<your_subscription_id>'
+certificate_path = '<path_to_.pem_certificate>'
+
+sms = ServiceManagementService(subscription_id, certificate_path)
+

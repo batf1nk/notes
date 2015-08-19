@@ -1,1 +1,111 @@
-#
+#puppet client setup centos redhat
+
+# add repo
+sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+
+
+# install puppet via you or by hand
+
+OR pich your own RPM
+.EG.
+#install repo centos 6
+rpm -ivh https://yum.puppetlabs.com/el/6.5/products/x86_64/puppetlabs-release-6-10.noarch.rpm
+# install repo centos 7
+rpm -ivh https://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs-release-7-10.noarch.rpm
+rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+
+# latest windows puppet releases
+https://downloads.puppetlabs.com/windows/?_ga=1.31947258.515049760.1413777785
+
+
+##########
+# Install agent
+yum install puppet-server
+
+#install puppet client
+yum install puppet
+
+# INstall ntp client
+# setup the chosen ruby
+
+########
+# use Ruby 2.1 not 2.0 (better testing)
+# ruby 2.1.0
+http://tecadmin.net/install-ruby-2-1-on-centos-rhel/
+
+yum install gcc-c++ patch readline readline-devel zlib zlib-devel
+yum install libyaml-devel libffi-devel openssl-devel make
+yum install bzip2 autoconf automake libtool bison iconv-devel
+
+# use RVM to get Ruby
+curl -L get.rvm.io | bash -s stablea ( will probably have to run the signiture import and run again)
+source /etc/profile.d/rvm.sh
+
+# install ruby and set default version
+rvm install 2.1.2
+rvm use 2.1.2 --default
+
+
+#########
+# Puppet ruby dependancies
+
+ruby                            x86_64              2.0.0.598-25.el7_1              updates                           67 k
+ ruby-augeas                     x86_64              0.4.1-3.el7                     puppetlabs-deps                   22 k
+ ruby-irb                        noarch              2.0.0.598-25.el7_1              updates                           88 k
+ ruby-libs                       x86_64              2.0.0.598-25.el7_1              updates                          2.8 M
+ ruby-shadow                     x86_64              1:2.2.0-2.el7                   puppetlabs-deps                   14 k
+ rubygem-bigdecimal              x86_64              1.2.0-25.el7_1                  updates                           79 k
+ rubygem-io-console              x86_64              0.4.2-25.el7_1                  updates                           50 k
+ rubygem-json                    x86_64              1.7.7-25.el7_1                  updates                           75 k
+ rubygem-psych                   x86_64              2.0.0-25.el7_1                  updates                           77 k
+ rubygem-rdoc                    noarch              4.0.0-25.el7_1                  updates                          318 k
+ rubygems   
+
+# 
+ run gem and update all install gems
+
+##########
+
+# setup puppet  agent cronjob
+sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+
+# setup puppet client
+edit /etc/puppet/puppet.conf
+[agent]
+server = puppetm.cmgazr.p9.internal.cloudapp.net
+
+# base server conf with alt names and chosen cert name
+[main]
+certname = puppetm.cmgcloud.p4.internal.cloudapp.net
+dns_alt_names = puppetm,builder4,puppetm.cmgcloud.p4.internal.cloudapp.net,builder4.cmgcloud.p4.internal.cloudapp.net
+
+
+# Runn the server for the first time to buod SSL certs
+sudo puppet master --verbose --no-daemonize
+
+
+# If youa re lazy , add the following to auto signs puppet cerst
+# in poppet.conf
+[master]
+autosign = $confdir/autosign.conf
+
+create /etc/puppet/autosign.conf
+*
+
+# Test agent and generate cert
+
+puppet agent -t
+
+#view certificate on master
+puppet cert list
+puppet cert list -all
+
+# sign new client cert
+puppet cert sign "<??????>"
+
+#start puppet server
+systemctl restart puppetmaster.service
+
+#start puppet agent
+systemctl restart puppet.service
+

@@ -1,0 +1,84 @@
+
+# activemq install
+
+# on midle wear server
+centos 6
+yum install activemq
+
+# get sample activemq.xml 
+wget https://raw.githubusercontent.com/puppetlabs/marionette-collective/master/ext/activemq/examples/single-broker/activemq.xml
+chown activemq:activemq activemq.xml
+chmod 0640 activemq.xml
+
+http://www.tokiwinter.com/configuring-and-deploying-mcollective-on-centos-6/
+change permisions for running dir
+ activemq]# chown -R activemq:activemq /usr/share/activemq
+
+
+
+
+#azure cli install
+https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-install/
+https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-connect/
+
+
+#setup git repository
+
+#select a server to hold the repo
+# create repo dir
+mkdir /opt/cmgrepo
+cd /opt/cmgrepo
+# initialise repo
+git init
+# cretae start file
+vi index.html     #hello git!
+# add newe file to git
+git add index.html
+OR
+git azure app --setup hello
+
+# set the repo default identity
+git config user.name grant_mellor
+git config user.email grant.mellor@chandlermacleod.com
+
+# check identity ( must return an email and user )
+
+# commit new file to git
+git commit -m "Adding index.html to the repository
+
+git config --local -l
+
+
+#create a githup we app in azure
+
+#Set remot alias for git repo
+git remote add azure https://cmggitweb@cmgaws.scm.azurewebsites.net:443/cmgaws.git
+
+#commit the data
+git push azure master
+
+
+#accessing existing git repo an second server
+# cread top directory
+git clone  https://cmggitweb@cmgaws.scm.azurewebsites.net:443/cmgaws.git
+
+# set the above user detaiols and git alias
+
+# update clone
+git pull   ( fetch and merge)
+git fetch  (fetch)
+
+
+# now we have a basic repo lets add some security
+# install ssl git module
+npm install git-azure -g
+
+
+#using git
+https://www.atlassian.com/git/tutorials/undoing-changes/git-reset
+
+#set the push process ( pushes a branch one at a time)
+git config  push.default simple
+
+
+

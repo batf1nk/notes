@@ -1,0 +1,57 @@
+#clone repo
+
+$ mkdir git-repos
+$ cd git-repos
+$ git clone https://github.com/AlracWebmaven/playground.git
+
+
+# branch
+
+$ cd playground
+$ git checkout -b test
+Switched to a new branch 'test'
+
+#git status
+
+$ git status
+On branch test
+nothing to commit, working directory clean
+
+# which branch
+
+$ git branch
+* test
+  master
+
+# delete branch
+
+$ git checkout master
+$ git branch -D test
+
+# make changes and commit
+
+$ git commit README.md
+[test 5badf67] changes to readme
+ 1 file changed, 1 insertion(+)
+
+# commit dirs or multiple files
+
+$ git commit file1 file2
+$ git commit -a -m "message"
+
+# check commit logs
+
+$ git log --branches --not --remotes
+commit 5badf677c55d0c53ca13d9753344a2a71de03199
+Author: Carla Schroder 
+Date:   Thu Nov 20 10:19:38 2014 -0800
+    changes to readme
+
+# push commit upstreem
+
+$ git push origin test
+
+# merge branch
+
+$ git checkout master
+$ git merge test

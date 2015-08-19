@@ -1,0 +1,17 @@
+ # setup  puppet azure module
+
+
+# download module
+puppet module install msopentech-windowsazure
+
+#gem dependancies
+azure (0.6.4)
+net-ssh (>= 2.1.4)
+net-scp (>= 1.0.4)
+winrm (>= 1.1.3)
+highline
+
+ie
+gem install .....
+
+https://forge.puppetlabs.com/msopentech/windowsazure
