@@ -10,6 +10,7 @@ net-ssh (>= 2.1.4)
 net-scp (>= 1.0.4)
 winrm (>= 1.1.3)
 highline
+tilt
 
 ie
 gem install .....
