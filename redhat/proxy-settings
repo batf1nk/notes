@@ -1,0 +1,12 @@
+# .bashrc
+
+
+http_proxy=172.31.3.167:8080
+https_proxy=172.31.3.167:8080
+export http_proxy
+git config --global http.proxy $http_proxy
+#
+# NOTE for rpm call
+# -httpproxy 172.31.3.167 -httpport 8080
+#
+
