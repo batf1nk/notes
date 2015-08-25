@@ -1,0 +1,19 @@
+
+# apt proxy
+
+edit /etc/apt/apt.conf
+
+Acquire::http::Proxy "http://yourproxyaddress:proxyport";
+or with password
+Acquire::http::Proxy "http://username:password@yourproxyaddress:proxyport";
+
+# git proxy
+
+~./bashrc
+
+
+export HTTP_PROXY=http://172.31.3.167:8080
+export HTTPS_PROXY=http://172.31.3.167:8080
+git config --global http.proxy $HTTP_PROXY
+git config --global https.proxy $HTTPS_PROXY
+

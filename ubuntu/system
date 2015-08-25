@@ -1,0 +1,15 @@
+# check sytem release
+lsb_release -a
+
+# list installed packages
+apt --installed list
+dpkg -l
+dpkg --get-selections
+
+apt list   
+
+manualy install apt repo
+cd /tmp
+wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+dpkg -i puppetlabs-release-trusty.deb
+apt-get update
