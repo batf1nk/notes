@@ -1,0 +1,13 @@
+# set hostname for redhat e
+# get current settings
+hotsnamectl status
+
+# set new hostanem
+hostnamectl set-hostname builder1.cmg.aws
+
+restart the hostnamed service
+systemctl restart systemd-hostnamed
+#
+# set hostname  for amazon 
+yust edit /etc/sysconfig/network
+hostname=XXX.com

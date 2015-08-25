@@ -1,0 +1,4 @@
+# missing tools
+
+# nslookup
+yum install bind-utils

@@ -1,10 +1,24 @@
 # .bashrc
 
 
-http_proxy=172.31.3.167:8080
-https_proxy=172.31.3.167:8080
+http_proxy=http://172.31.3.167:8080
+https_proxy=http://172.31.3.167:8080
 export http_proxy
 git config --global http.proxy $http_proxy
+
+#edit /etc/yum.conf
+# The proxy server - proxy server:port number
+proxy=http://mycache.mydomain.com:3128
+# The account details for yum connections
+proxy_username=yum-user
+proxy_password=qwerty
+
+# wget
+# eddit /etc/wgetrc
+http_proxy=http://172.31.3.167:8080
+https_proxy=http://172.31.3.167:8080
+ftp_proxy=http://172.31.3.167:8080
+
 #
 # NOTE for rpm call
 # -httpproxy 172.31.3.167 -httpport 8080

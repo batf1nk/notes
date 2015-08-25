@@ -116,5 +116,5 @@ puppet cert sign "<??????>"
 systemctl restart puppetmaster.service
 
 #start puppet agent
-systemctl restart puppet.service
+systemcty restart puppet.service
 
